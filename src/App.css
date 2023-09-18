@@ -7,14 +7,10 @@
 .App {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content:space-around;
   align-items: center;
-  padding: 2rem;
-  width: 30vw;
-  height: 50vh;
-  margin-top: 10vh;
-  margin-left: 30vw;
+  width: 100vw;
+  height: 100vh;
   background: red url("../public/background.jpg") no-repeat ;
   background-size: cover;
-  color: #000;
 }
