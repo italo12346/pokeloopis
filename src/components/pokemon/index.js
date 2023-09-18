@@ -1,5 +1,4 @@
 import "./style.css";
-import Input from "../input";
 
 const fetchedPokemonList = await fetch("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0");
 let pokemonList = await fetchedPokemonList.json();
@@ -12,12 +11,26 @@ const fetchedPokemon = await fetch(pokemon.url);
 let pokemoninfo = await fetchedPokemon.json();
 let pokemonImg = await pokemoninfo.sprites.front_default
 
-console.log(Input.name)
-
+function checkHit(hit) {
+  if (hit === pokemon.name) {
+    return true
+  }else{
+    return false
+  }
+}
+console.log(checkHit(true));
 export default function Pokemon () {
-  return (
-  <div className="pokeCard">
-    <img src ={pokemonImg}></img>
-  </div>
-  );
+  if (checkHit() === true) {
+    return (
+      <div className="pokeCard">
+        <img className="hitImg" src ={pokemonImg}></img> 
+    </div>
+      );
+  }else{
+    return (
+      <div className="pokeCard">
+        <img className="missImg" src ={pokemonImg}></img> 
+    </div>
+      );
+  }
 }

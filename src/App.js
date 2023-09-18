@@ -11,7 +11,6 @@ function App() {
       <Placar/>
       <Pokemon/>
       <Input />
-
     </div>
   );
 }
