@@ -1,20 +1,6 @@
 import { useEffect } from "react";
 import "./style.css";
 
-// const pokemon = pokemonList[randomIndex];
-
-// const fetchedPokemon = await fetch(pokemon.url);
-// let pokemoninfo = await fetchedPokemon.json();
-// let pokemonImg = await pokemoninfo.sprites.front_default
-
-// function checkHit(hit) {
-//   if (hit === pokemon.name) {
-//     return true
-//   }else{
-//     return false
-//   }
-// }
-// console.log(checkHit(true));
 export default function Pokemon ({pokemonData, pokemonIndex}) {
 
   function fixIndexValue (index) {
@@ -24,7 +10,10 @@ export default function Pokemon ({pokemonData, pokemonIndex}) {
   }
 
   return (
-    <img className="hitImg" src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${fixIndexValue(pokemonIndex)}.png`}></img>
+
+    <div className="pokeCard">
+           { <img className="missImg" src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${fixIndexValue(pokemonIndex)}.png`}></img>}
+       </div>
   )
 
   // if (checkHit() === true) {
