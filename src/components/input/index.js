@@ -1,32 +1,35 @@
 import { useState } from "react";
 import inputStyle from "./style.css";
 
-export default function Input ({setCount, count, pokemonData, setRecord, record}) {
-
+export default function Input ({ score, setScore, setCount, count, pokemonData, setRecord, record }) {
   const [inputText, setInputText] = useState('');
 
   function saveLastChange(e) {
     setInputText(e.target.value);
   }
 
-  function handleSubmit (event) {
-
-    if (event.key !== 'Enter') return;
+  function handleSubmit (e) {
+    if (e.key !== 'Enter') return;
     
     const name = pokemonData.name.toLowerCase();
-    const userInput =inputText.toLowerCase();
+    const userInput = inputText.toLowerCase();
 
     if (name === userInput) {
       console.log('Acertou!');
-      setCount(count++);
+      setScore(score + 1);
+      if(score >= record) {
+        setRecord(score);
+        localStorage.setItem("record", record);
+      }
+      setCount(count + 1);
     } else {
-      setCount(count++);
+      setCount(count + 1);
     }
   }
 
   return (
-  <div style={inputStyle.div}>
-      <input onChange={saveLastChange} onKeyPress={handleSubmit} style={inputStyle.input} name="hit" type="text" placeholder="Adivinhe o Pokemon"></input>
-  </div>
+    <div style={inputStyle.div}>
+        <input onChange={saveLastChange} onKeyPress={handleSubmit} style={inputStyle.input} name="hit" type="text" placeholder="Adivinhe o Pokemon"></input>
+    </div>
   );
 }
