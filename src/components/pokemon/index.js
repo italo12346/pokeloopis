@@ -19,7 +19,7 @@ export default function Pokemon({ pokemonType, pokemonIndex }) {
 
       timeout = setTimeout(() => {
         setImg("missImg");
-      }, 1000); // Defina o tempo que desejar aqui em milissegundos (1 segundo no exemplo)
+      }, 159); // Defina o tempo que desejar aqui em milissegundos (1 segundo no exemplo)
     }
 
     return () => clearTimeout(timeout);
