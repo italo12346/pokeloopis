@@ -1,31 +1,39 @@
-import { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./style.css";
 
-export default function Pokemon ({pokemonType, pokemonIndex}) {
-  function fixIndexValue (index) {
+export default function Pokemon({ pokemonType, pokemonIndex }) {
+  function fixIndexValue(index) {
     if (index < 10) return '00' + index;
     if (index < 100) return '0' + index;
     return index;
   }
 
+  const [showImg, setImg] = useState("missImg");
+  const indexRef = useRef(pokemonIndex);
+
+  useEffect(() => {
+    let timeout;
+    if (pokemonIndex !== indexRef.current) {
+      setImg("show");
+      indexRef.current = pokemonIndex;
+
+      timeout = setTimeout(() => {
+        setImg("missImg");
+      }, 1000); // Defina o tempo que desejar aqui em milissegundos (1 segundo no exemplo)
+    }
+
+    return () => clearTimeout(timeout);
+  }, [pokemonIndex]);
+
   return (
-
     <div style={{ backgroundColor: pokemonType?.color }} className="pokeCard">
-      { <img className="missImg" draggable="false" src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${fixIndexValue(pokemonIndex)}.png`}></img>}
+      {pokemonIndex !== undefined && (
+        <img
+          className={`${showImg}`}
+          draggable="false"
+          src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${fixIndexValue(pokemonIndex)}.png`}
+        />
+      )}
     </div>
-  )
-
-  // if (checkHit() === true) {
-  //   return (
-  //     <div className="pokeCard">
-  //       {/* <img className="hitImg" src ={pokemonImg}></img>  */}
-  //   </div>
-  //     );
-  // }else{
-  //   return (
-  //     <div className="pokeCard">
-  //       {/* <img className="missImg" src ={pokemonImg}></img>  */}
-  //   </div>
-  //     );
-  // }
+  );
 }

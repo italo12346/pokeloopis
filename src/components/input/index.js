@@ -1,8 +1,9 @@
 import { useState } from "react";
-import inputStyle from "./style.css";
+import  "./style.css";
 
-export default function Input ({ score, setScore, setCount, count, pokemonData, setRecord, record }) {
+export default function Input ({ score, setScore, setCount, count, pokemonData, setRecord, record, tipoColor}) {
   const [inputText, setInputText] = useState('');
+  const [color, setColor] = useState(tipoColor?.color);
 
   function saveLastChange(e) {
     setInputText(e.target.value);
@@ -22,14 +23,15 @@ export default function Input ({ score, setScore, setCount, count, pokemonData, 
         localStorage.setItem("record", record);
       }
       setCount(count + 1);
+      setColor("#008000")
     } else {
       setCount(count + 1);
+      setColor("#ff3529")
     }
   }
-
   return (
-    <div style={inputStyle.div}>
-        <input onChange={saveLastChange} onKeyPress={handleSubmit} style={inputStyle.input} name="hit" type="text" placeholder="Adivinhe o Pokemon"></input>
+    <div >
+        <input style={{ backgroundColor: color }} onChange={saveLastChange} onKeyPress={handleSubmit} name="hit" type="text" placeholder="Adivinhe o Pokemon"></input>
     </div>
   );
 }

@@ -30,8 +30,8 @@ function App() {
   return (
     <div className="App">
       <Placar score={ score } highscore={ record } />
-      <Pokemon  pokemonType={ types[pokemonData?.types[0].type.name] } pokemonIndex={pokemonIndex}/>
-      <Input score={ score } setScore={ setScore } setCount={setCount} count={count} pokemonData={pokemonData} setRecord={setRecord} record={record}/>
+      <Pokemon pokemonType={ types[pokemonData?.types[0].type.name] } pokemonIndex={pokemonIndex}/>
+      <Input  tipoColor={ types[pokemonData?.types[0].type.name] } score={ score } setScore={ setScore } setCount={setCount} count={count} pokemonData={pokemonData} setRecord={setRecord} record={record}/>
       <Tipo tipo={ types[pokemonData?.types[0].type.name] }/>
     </div>
   );
