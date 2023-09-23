@@ -1,37 +1,59 @@
 import { useState } from "react";
-import  "./style.css";
+import "./style.css";
 
-export default function Input ({ score, setScore, setCount, count, pokemonData, setRecord, record, tipoColor}) {
-  const [inputText, setInputText] = useState('');
-  const [color, setColor] = useState(tipoColor?.color);
+export default function Input({
+  score,
+  setScore,
+  setCount,
+  count,
+  pokemonData,
+  setRecord,
+  record,
+  setShowPokemon,
+  inputColor,
+  setInputColor
+}) {
+  const [inputText, setInputText] = useState("");
 
   function saveLastChange(e) {
     setInputText(e.target.value);
   }
 
-  function handleSubmit (e) {
-    if (e.key !== 'Enter') return;
+  function handleSubmit(e) {
+    if (e.key !== "Enter") return;
+
+    setShowPokemon("none");
     
     const name = pokemonData.name.toLowerCase();
     const userInput = inputText.toLowerCase();
-
+    
     if (name === userInput) {
-      console.log('Acertou!');
+      let localRecord = Number(localStorage.getItem("record")) + 1;
+      console.log("Acertou!");
       setScore(score + 1);
-      if(score >= record) {
-        setRecord(score);
-        localStorage.setItem("record", record);
+      if (localRecord > record) {
+        setRecord(localRecord);
+        localStorage.setItem("record", localRecord);
       }
-      setCount(count + 1);
-      setColor("#008000")
+      setInputColor("#008000");
     } else {
-      setCount(count + 1);
-      setColor("#ff3529")
+      setInputColor("#ff3529");
     }
+
+    setTimeout(() => {
+      setCount(count + 1);
+    }, 1000 * 4);
   }
   return (
-    <div >
-        <input style={{ backgroundColor: color }} onChange={saveLastChange} onKeyPress={handleSubmit} name="hit" type="text" placeholder="Adivinhe o Pokemon"></input>
+    <div>
+      <input
+        style={{ backgroundColor: inputColor }}
+        onChange={saveLastChange}
+        onKeyPress={handleSubmit}
+        name="hit"
+        type="text"
+        placeholder="Adivinhe o Pokemon"
+      ></input>
     </div>
   );
 }
