@@ -24,7 +24,7 @@ export default function Input({
 
     setShowPokemon("none");
     
-    const name = pokemonData.name.toLowerCase();
+    const name = pokemonData.name.toLowerCase().replace("-", " ");
     const userInput = inputText.toLowerCase();
     
     if (name === userInput) {
