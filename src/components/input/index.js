@@ -28,16 +28,13 @@ export default function Input({
     const userInput = inputText.toLowerCase();
     
     if (name === userInput) {
-      let localRecord = Number(localStorage.getItem("record")) + 1;
       console.log("Acertou!");
-      setScore(score + 1);
-      if (localRecord > record) {
-        setRecord(localRecord);
-        localStorage.setItem("record", localRecord);
-      }
+      let newScore = score + 1;
+      setScore(newScore);
       setInputColor("#008000");
     } else {
       setInputColor("#ff3529");
+      setScore(0);
     }
 
     setTimeout(() => {

@@ -41,8 +41,13 @@ function App() {
       setInputColor("#ececec");
       setRecord(localStorage.getItem("record") ? localStorage.getItem("record") : 0);
       setPokemonIndex(randomIndex);
-      // console.log(score);
-      // console.log(record);
+
+      let localRecord = Number(localStorage.getItem("record"));
+
+      if (score > localRecord) {
+        setRecord(localRecord + 1);
+        localStorage.setItem("record", localRecord + 1);
+      }
     })();
   }, [count]);
 
