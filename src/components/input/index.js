@@ -48,13 +48,9 @@ export default function Input({
       }
     } else {
       setStatus("wrong");
-      setFeedback("✗ tente novamente");
+      setFeedback(`✗ era ${pokemonData.name}`);
+      setShowPokemon("brightness(1)");
       setScore(0);
-      setTimeout(() => {
-        setStatus("");
-        setFeedback("");
-        setInputText("");
-      }, 800);
     }
 
     setTimeout(() => {

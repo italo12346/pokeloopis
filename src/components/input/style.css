@@ -15,30 +15,29 @@
   width: 100%;
 }
 
-.input-wrapper::before {
-  content: '▶';
+.input-arrow {
   position: absolute;
   left: 14px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 10px;
-  color: rgba(255,255,255,0.3);
+  color: rgba(255, 255, 255, 0.3);
   font-family: var(--pixel-font);
   pointer-events: none;
   transition: color 0.3s ease;
 }
 
-.input-wrapper:focus-within::before {
+.input-wrapper:focus-within .input-arrow {
   color: var(--neon-blue);
 }
 
 .poke-input {
   width: 100%;
   padding: 14px 16px 14px 36px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
-  color: var(--text-primary);
+  color: #f0f0f0;
   font-family: var(--pixel-font);
   font-size: 10px;
   letter-spacing: 0.05em;
@@ -48,14 +47,14 @@
 }
 
 .poke-input::placeholder {
-  color: rgba(255,255,255,0.25);
+  color: rgba(255, 255, 255, 0.25);
   font-size: 9px;
 }
 
 .poke-input:focus {
   border-color: rgba(0, 212, 255, 0.5);
-  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1), var(--glow-blue);
-  background: rgba(255,255,255,0.07);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1), 0 0 20px rgba(0, 212, 255, 0.3);
+  background: rgba(255, 255, 255, 0.07);
 }
 
 .poke-input.correct {
@@ -66,26 +65,48 @@
 
 .poke-input.wrong {
   border-color: rgba(255, 45, 85, 0.7);
-  box-shadow: 0 0 0 3px rgba(255, 45, 85, 0.15), var(--glow-red);
-  color: var(--neon-red);
+  box-shadow: 0 0 0 3px rgba(255, 45, 85, 0.15), 0 0 20px rgba(255, 45, 85, 0.3);
+  color: #ff2d55;
   animation: shake 0.4s ease;
 }
 
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
-  20% { transform: translateX(-6px); }
-  40% { transform: translateX(6px); }
-  60% { transform: translateX(-4px); }
-  80% { transform: translateX(4px); }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
 }
 
+/* Texto de dica abaixo do input */
+.aviso {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--pixel-font);
+  font-size: 7px;
+  color: rgba(255, 255, 255, 0.28);
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+/* Feedback de acerto/erro — cor controlada via inline style no JSX */
+.feedback-text {
+  font-family: var(--pixel-font);
+  font-size: 8px;
+  min-height: 16px;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Botão pular */
 .skip-btn {
   font-family: var(--pixel-font);
   font-size: 8px;
   letter-spacing: 0.05em;
-  color: rgba(255,255,255,0.3);
+  color: rgba(255, 255, 255, 0.35);
   background: transparent;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 4px;
   padding: 8px 18px;
   cursor: pointer;
@@ -93,15 +114,7 @@
 }
 
 .skip-btn:hover {
-  color: var(--neon-red);
-  border-color: var(--neon-red);
-  box-shadow: var(--glow-red);
-}
-
-.feedback-text {
-  font-family: var(--pixel-font);
-  font-size: 8px;
-  min-height: 16px;
-  letter-spacing: 0.05em;
-  transition: color 0.3s ease;
+  color: #ff2d55;
+  border-color: #ff2d55;
+  box-shadow: 0 0 16px rgba(255, 45, 85, 0.4);
 }
