@@ -1,14 +1,32 @@
 .tipo {
-  padding: 12px 100px;
-  background-color: #319cff;
-  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 22px;
+  border-radius: 999px;
+  font-family: var(--pixel-font);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow:
+    0 4px 20px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+  position: relative;
+  z-index: 5;
+  transition: background-color 0.6s ease, box-shadow 0.6s ease;
+  margin-bottom: 8px;
+}
+
+.tipo::before {
+  content: '▸';
+  font-size: 10px;
+  opacity: 0.8;
 }
 
 .tipo p {
-  color: #fff;
-  font-family: Inter, Arial, Helvetica, sans-serif;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
+  margin: 0;
+  line-height: 1;
 }
